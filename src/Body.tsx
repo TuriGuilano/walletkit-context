@@ -8,6 +8,7 @@ import { Keypair, LAMPORTS_PER_SOL } from "@solana/web3.js";
 import { lighten } from "polished";
 import { useCallback, useEffect, useState } from "react";
 import invariant from "tiny-invariant";
+import { Button } from "degen";
 
 import { breakpoints } from "./App";
 
@@ -77,16 +78,22 @@ export const Body: React.FC = () => {
             </li>
           </ul>
           <Buttons>
-            <Button onClick={disconnect}>Disconnect</Button>
+            <Button size="small" onClick={disconnect} variant="transparent">
+              Disconnect
+            </Button>
             <Button
               onClick={() => {
                 setNetwork("devnet");
               }}
+              variant="secondary"
+              size="small"
             >
               Switch to Devnet
             </Button>
             <Button
               disabled={!providerMut}
+              variant="tertiary"
+              size="small"
               onClick={async () => {
                 invariant(providerMut, "providerMut");
                 const txSig = await providerMut.connection.requestAirdrop(
@@ -104,6 +111,7 @@ export const Body: React.FC = () => {
             </Button>
             <Button
               disabled={!providerMut}
+              size="small"
               onClick={async () => {
                 invariant(providerMut, "providerMut");
                 const tx = await createInitMintInstructions({
@@ -148,27 +156,27 @@ const WalletInfo = styled.div`
   text-align: left;
 `;
 
-const Button = styled.button`
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  cursor: pointer;
-  border: none;
-  outline: none;
-  height: 40px;
-  mix-blend-mode: normal;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 4px;
-  padding: 0 12px;
-  background: #000;
-  color: #fff;
-  &:hover {
-    background: ${lighten(0.1, "#000")};
-  }
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-`;
+// const Button = styled.button`
+//   display: flex;
+//   align-items: center;
+//   gap: 12px;
+//   cursor: pointer;
+//   border: none;
+//   outline: none;
+//   height: 40px;
+//   mix-blend-mode: normal;
+//   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+//   border-radius: 4px;
+//   padding: 0 12px;
+//   background: #000;
+//   color: #fff;
+//   &:hover {
+//     background: ${lighten(0.1, "#000")};
+//   }
+//   font-weight: bold;
+//   font-size: 16px;
+//   line-height: 20px;
+// `;
 
 const Buttons = styled.div`
   display: flex;
